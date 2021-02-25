@@ -110,8 +110,8 @@ export interface AssistantServerAction {
     /* действие, понятное бекенду */
     action_id: string;
     app_info?: AssistantServerActionAppInfo;
-    /* любые параметры */
-    parameters?: Record<string, any>;
+    /* payload для бека */
+    parameters?: Record<string, unknown>;
 }
 
 export type AssistantCommands =
@@ -166,6 +166,7 @@ export interface AssistantNavigationCommand {
 
 export interface AssistantSmartAppData {
     type: 'smart_app_data';
+    smart_app_data?: Record<string, unknown>;
     sdkMeta?: SdkMeta;
 }
 
@@ -180,10 +181,9 @@ export interface AssistantSmartAppError {
 
 export interface AssistantSmartAppCommand extends AssistantSmartAppData {
     smart_app_data: {
-        command: string;
-        [key: string]: unknown;
+        type: string;
+        payload: Record<string, unknown>;
     };
-    [key: string]: unknown;
     sdkMeta?: SdkMeta;
 }
 
